@@ -13,7 +13,7 @@ urlpatterns = patterns('',
         name='index'),
     url(r'^(?P<pk>\d+)/$',
         DetailView.as_view(
-            model=Poll,
+            queryset=Poll.objects.filter(pub_date__lte=timezone.now),
             template_name='polls/detail.html'),
         name='detail'),
     url(r'^(?P<pk>\d+)/results/$',
